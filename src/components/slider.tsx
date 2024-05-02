@@ -91,9 +91,9 @@ function SliderComponent() {
     }
 
     // Updating the value on change in slider position.
-    const handleChange = (event: Event, newValue: number, activeThumb: number) => {
-      setValue(newValue);
-      console.log(event, activeThumb); 
+    const handleChange = (event: ChangeEvent<{}>, newValue: number | number[]) => {
+        setValue(newValue as number); // Since we are using a single-slider, we cast newValue to number.
+        console.log(event);
     };
     
     // Custom attributes to slider track, rail and thumb.
