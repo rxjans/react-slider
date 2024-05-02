@@ -6,15 +6,47 @@ import Slider from '@mui/material/Slider';
 import { Button } from '@mui/material';
 
 function SliderComponent() {
-    // State to track the switch button state
+    // State to track the switch button state.
     const [buttonOn, setButtonOn] = useState(false);
+    // State to track the value of slider.
+    const [value, setValue] = React.useState<number>(1000);
 
     interface Mark {
         value: number;
         label: string;
-    }   
+    }  
 
-    const AntSwitch = styled(Switch)(({ theme }) => ({
+    // Labels creation for slider.
+    const marks = [
+      {
+          value: 0,
+          label: '$5',
+      },
+      {
+          value: 1000,
+          label: '$10',
+      },
+      {
+          value: 2000,
+          label: '$15',
+      },
+      {
+          value: 3000,
+          label: '$20',
+      },
+      {
+          value: 4000,
+          label: '$25',
+      },
+      {
+          value: 5000,
+          label: '$30',
+      },
+  ];
+
+  // Switch button styling
+
+  const AntSwitch = styled(Switch)(({ theme }) => ({
         width: 28,
         height: 16,
         padding: 0,
@@ -53,62 +85,33 @@ function SliderComponent() {
             backgroundColor:
                 theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
             boxSizing: 'border-box',
-            transition: 'background-color 0.3s ease-in-out', // Add transition effect
+            transition: 'background-color 0.3s ease-in-out', // Add transition effect.
         },
     }));
 
-    const marks = [
-        {
-            value: 0,
-            label: '$5',
-        },
-        {
-            value: 1000,
-            label: '$10',
-        },
-        {
-            value: 2000,
-            label: '$15',
-        },
-        {
-            value: 3000,
-            label: '$20',
-        },
-        {
-            value: 4000,
-            label: '$25',
-        },
-        {
-            value: 5000,
-            label: '$30',
-        },
-    ];
-
     function valuetext(value: number): string {
-        return `${value} credits`;
+        return `${value}`;
     }
 
-    const [value, setValue] = React.useState<number>(1000);
-
     const handleChange = (event: Event, newValue: number | number[]) => {
-        setValue(newValue as number); // Since we are using a single-slider, we cast newValue to number
+        setValue(newValue as number); // Since we are using a single-slider, we cast newValue to number.
     };
       
     const CustomSlider = styled(Slider)({
         '& .MuiSlider-rail': {
-            height: 6, // Adjust the height of the rail
-            borderRadius: 4, // Optional: Adjust the border radius for rounded corners
+            height: 6, // Adjust the height of the rail.
+            borderRadius: 4, // Adjust border radius.
         },
         '& .MuiSlider-track': {
-            height: 6, // Adjust the height of the track
-            borderRadius: 4, // Optional: Adjust the border radius for rounded corners
-            transition: 'background-color 0.3s ease-in-out', // Add transition effect
+            height: 6, // Adjust the height of the track.
+            borderRadius: 4, // Adjust the border radius for rounded corners.
+            transition: 'background-color 0.3s ease-in-out', // Add transition effect.
         },
         '& .MuiSlider-thumb': {
-            width: 16, // Adjust the width of the thumb
-            height: 16, // Adjust the height of the thumb
-            marginTop: 0, // Optional: Center the thumb vertically with the track
-            marginLeft: 0, // Optional: Center the thumb horizontally with the track
+            width: 16, // Adjust the width of the thumb.
+            height: 16, // Adjust the height of the thumb.
+            marginTop: 0, // Center the thumb vertically with the track.
+            marginLeft: 0, // Center the thumb horizontally with the track.
         },
     });
 
@@ -137,7 +140,7 @@ function SliderComponent() {
 
     return (
         <div className='h-screen w-screen flex justify-center items-center p-2'>
-            <div className={`border-2 overflow-hidden sm:w-[600px] md:w-[600px] ${buttonOn ? "h-[260px]" : "h-[100px]"} rounded-3xl p-8`} style={{ transition: 'height 0.2s ease-in-out' }}>
+            <div className={`border-2 overflow-hidden sm:w-[600px] md:w-[600px] ${buttonOn ? "h-[300px] sm:h-[260px]" : "h-[100px]"} rounded-3xl p-8`} style={{ transition: 'height 0.2s ease-in-out' }}>
                 {/* heading */}
                 <div className='flex items-center gap-2'>
                     <Typography variant="h6" style={{ fontSize: '19px' }}>
@@ -203,23 +206,23 @@ function SliderComponent() {
                                 }}
                             />
                             {/* Render labels only if the switch button is on */}
-                            <Typography style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '-5px', left: '-1px' }}>
-                                500 credits
+                            <Typography className='flex flex-col sm:flex-row gap-0.5' style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '0px', left: '-1px',lineHeight: '10px' ,'@media (max-width: 640px)': { bottom: '-10px' } }}>
+                                <p>500</p> <p>credits</p>
                             </Typography>
-                            <Typography style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '-5px', left: 'calc(23% - 32px)' }}>
-                                1200 credits
+                            <Typography className='flex flex-col sm:flex-row gap-0.5' style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '0px', left: 'calc(23% - 32px)',lineHeight: '10px' ,'@media (max-width: 640px)': { bottom: '-10px' },'@media (max-width: 500px)': { bottom: '-10px', left: 'calc(23% - 20px)' } }}>
+                            <p>1200</p> <p>credits</p>
                             </Typography>
-                            <Typography style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '-5px', left: 'calc(40% - 25px)' }}>
-                                1700 credits
+                            <Typography className='flex flex-col sm:flex-row gap-0.5' style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '0px', left: 'calc(40% - 25px)',lineHeight: '10px' ,'@media (max-width: 640px)': { bottom: '-10px' },'@media (max-width: 500px)': { bottom: '-10px', left: 'calc(40% - 16px)' } }}>
+                            <p>1700</p> <p>credits</p>
                             </Typography>
-                            <Typography style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '-5px', left: 'calc(59% - 29px)' }}>
-                                2500 credits
+                            <Typography className='flex flex-col sm:flex-row gap-0.5' style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '0px', left: 'calc(59% - 29px)',lineHeight: '10px' ,'@media (max-width: 640px)': { bottom: '-10px' },'@media (max-width: 500px)': { bottom: '-10px', left: 'calc(59% - 18px)' } }}>
+                            <p>2500</p> <p>credits</p>
                             </Typography>
-                            <Typography style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '-5px', left: 'calc(78% - 34px)' }}>
-                                3900 credits
+                            <Typography className='flex flex-col sm:flex-row gap-0.5' style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '0px', left: 'calc(78% - 34px)',lineHeight: '10px' ,'@media (max-width: 640px)': { bottom: '-10px' },'@media (max-width: 500px)': { bottom: '-10px', left: 'calc(78% - 20px)' } }}>
+                            <p>3900</p> <p>credits</p>
                             </Typography>
-                            <Typography style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '-5px', left: 'calc(100% - 58px)' }}>
-                                5000 credits
+                            <Typography className='flex flex-col sm:flex-row gap-0.5' style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '0px', left: 'calc(100% - 58px)',lineHeight: '10px' ,'@media (max-width: 640px)': { bottom: '-10px', left: 'calc(100% - 49px)' },'@media (max-width: 500px)': { bottom: '-10px', left: 'calc(100% - 32px)' } }}>
+                            <p>5000</p> <p>credits</p>
                             </Typography>
                         </div>
                     </div>
@@ -237,11 +240,11 @@ function SliderComponent() {
                                 fontSize: '9.2px', 
                                 marginTop: '30px',
                                 '@media (max-width: 600px)': {
-                                  marginTop: '20px', // Adjusted top margin for smaller devices
+                                  marginTop: '30px', // Adjusted top margin for smaller devices
                               },
                               '&:hover': { // This removes hover styles
-                                backgroundColor: '#9847ff', // Set background color to same as normal state (optional)
-                                color: 'white', // Set text color to same as normal state (optional)
+                                backgroundColor: '#9847ff', // Set background color to same as normal state
+                                color: 'white', // Set text color to same as normal state
                               },
                             }}
                         >
