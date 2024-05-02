@@ -29,13 +29,13 @@ Once you have installed the component in your project, you can use it by followi
 Import the SliderComponent into your React component file:
 - import SliderComponent from './SliderComponent';
 Use the SliderComponent within your JSX code:
-```function App() {
-    return (
-        <div className="App">
-            <SliderComponent />
-        </div>
-    );
-}```
+```function App() {```
+```    return (```
+```        <div className="App">```
+```           <SliderComponent />```
+```        </div>```
+```    );```
+```}```
 Customize the component as needed by modifying the provided props or styling.
 Props
 The SliderComponent does not accept any props. However, you can customize its behavior and appearance directly within the component file.
