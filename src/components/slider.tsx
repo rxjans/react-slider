@@ -91,7 +91,7 @@ function SliderComponent() {
     }
 
     // Updating the value on change in slider position.
-    const handleChange = (event: ChangeEvent<{}>, newValue: number | number[]) => {
+    const handleChange = (event: ChangeEvent<HTMLSpanElement>, newValue: number | number[]) => {
         setValue(newValue as number); // Since we are using a single-slider, we cast newValue to number.
         console.log(event);
     };
