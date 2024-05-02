@@ -73,3 +73,4 @@ This will render the SliderComponent within your application, allowing users to 
 
 That's it! You've successfully integrated the Auto Top-up Slider Component into your React application. You can now leverage its functionality to enhance your user experience.
 
+Visit the Github Repo here: https://github.com/rxjans/react-slider
