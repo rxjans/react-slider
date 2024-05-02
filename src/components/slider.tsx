@@ -7,7 +7,7 @@ import { Button } from '@mui/material';
 
 function SliderComponent() {
     // State to track the switch button state.
-    const [buttonOn, setButtonOn] = useState(false);
+    const [buttonOn, setButtonOn] = useState(true);
     // State to track the value of slider.
     const [value, setValue] = React.useState<number>(1000);
 
