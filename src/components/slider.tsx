@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChangeEvent } from 'react';
+import { SliderChangeEvent } from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
@@ -91,7 +91,7 @@ function SliderComponent() {
     }
 
     // Updating the value on change in slider position.
-    const handleChange = (event: ChangeEvent<{}>, newValue: number | number[]) => {
+    const handleChange = (event: SliderChangeEvent, newValue: number | number[]) => {
         setValue(newValue as number); // Since we are using a single-slider, we cast newValue to number.
         console.log(event);
     };
