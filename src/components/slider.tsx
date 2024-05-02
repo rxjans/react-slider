@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { SliderChangeEvent } from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
