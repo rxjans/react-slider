@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ChangeEvent } from 'react';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
@@ -11,10 +12,6 @@ function SliderComponent() {
     // State to track the value of slider.
     const [value, setValue] = React.useState<number>(1000);
 
-    interface Mark {
-        value: number;
-        label: string;
-    }  
 
     // Labels creation for slider.
     const marks = [
@@ -93,10 +90,12 @@ function SliderComponent() {
         return `${value}`;
     }
 
-    const handleChange = (event: Event, newValue: number | number[]) => {
+    // Updating the value on change in slider position.
+    const handleChange = (event: ChangeEvent, newValue: number | number[]) => {
         setValue(newValue as number); // Since we are using a single-slider, we cast newValue to number.
     };
-      
+    
+    // Custom attributes to slider track, rail and thumb.
     const CustomSlider = styled(Slider)({
         '& .MuiSlider-rail': {
             height: 6, // Adjust the height of the rail.
@@ -115,25 +114,10 @@ function SliderComponent() {
         },
     });
 
+    // Printing credit score to console.
     const handleClick = ()=> {
-      if(value === 0){
-        console.log('Auto Top-up selected: 500');
-      }
-      else if(value === 1000){
-        console.log("Auto Top-up selected: 1200")
-      }
-      else if(value === 2000){
-        console.log("Auto Top-up selected: 1700")
-      }
-      else if(value === 3000){
-        console.log("Auto Top-up selected: 2500")
-      }
-      else if(value === 4000){
-        console.log("Auto Top-up selected: 3900")
-      }
-      else if(value === 5000){
-        console.log("Auto Top-up selected: 5000")
-      }
+      const autoTopUpAmount = value === 0 ? 500 : value === 1000 ? 1200 : value === 2000 ? 1700 : value === 3000 ? 2500 : value === 4000 ? 3900 : value === 5500 ? 5000 : value;
+      console.log(`Auto Top-up selected: ${autoTopUpAmount}`);
     }
 
     const creditValue = value === 0 ? 500 : value === 1000 ? 1200 : value === 2000 ? 1700 : value === 3000 ? 2500 : value === 4000 ? 3900 : value === 5500 ? 5000 : value;
@@ -176,7 +160,6 @@ function SliderComponent() {
                                 max={5500}
                                 value={value}
                                 onChange={handleChange}
-                                ThumbComponent="span"
                                 sx={{
                                     '& .MuiSlider-mark': {
                                         width: '0px', // Adjust the width of the marks
