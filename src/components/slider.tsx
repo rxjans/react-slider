@@ -1,0 +1,257 @@
+import React, { useState } from 'react';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+import Switch from '@mui/material/Switch';
+import Slider from '@mui/material/Slider';
+import { Button } from '@mui/material';
+
+function SliderComponent() {
+    // State to track the switch button state
+    const [buttonOn, setButtonOn] = useState(false);
+
+    interface Mark {
+        value: number;
+        label: string;
+    }   
+
+    const AntSwitch = styled(Switch)(({ theme }) => ({
+        width: 28,
+        height: 16,
+        padding: 0,
+        display: 'flex',
+        '&:active': {
+            '& .MuiSwitch-thumb': {
+                width: 15,
+            },
+            '& .MuiSwitch-switchBase.Mui-checked': {
+                transform: 'translateX(9px)',
+            },
+        },
+        '& .MuiSwitch-switchBase': {
+            padding: 2,
+            '&.Mui-checked': {
+                transform: 'translateX(12px)',
+                color: '#fff',
+                '& + .MuiSwitch-track': {
+                    opacity: 1,
+                    backgroundColor: theme.palette.mode === 'dark' ? '#2caf9e' : '#2caf9e',
+                },
+            },
+        },
+        '& .MuiSwitch-thumb': {
+            boxShadow: '0 2px 4px 0 rgb(0 35 11 / 20%)',
+            width: 12,
+            height: 12,
+            borderRadius: 6,
+            transition: theme.transitions.create(['width'], {
+                duration: 200,
+            }),
+        },
+        '& .MuiSwitch-track': {
+            borderRadius: 16 / 2,
+            opacity: 1,
+            backgroundColor:
+                theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
+            boxSizing: 'border-box',
+            transition: 'background-color 0.3s ease-in-out', // Add transition effect
+        },
+    }));
+
+    const marks = [
+        {
+            value: 0,
+            label: '$5',
+        },
+        {
+            value: 1000,
+            label: '$10',
+        },
+        {
+            value: 2000,
+            label: '$15',
+        },
+        {
+            value: 3000,
+            label: '$20',
+        },
+        {
+            value: 4000,
+            label: '$25',
+        },
+        {
+            value: 5000,
+            label: '$30',
+        },
+    ];
+
+    function valuetext(value: number): string {
+        return `${value} credits`;
+    }
+
+    const [value, setValue] = React.useState<number>(1000);
+
+    const handleChange = (event: Event, newValue: number | number[]) => {
+        setValue(newValue as number); // Since we are using a single-slider, we cast newValue to number
+    };
+      
+    const CustomSlider = styled(Slider)({
+        '& .MuiSlider-rail': {
+            height: 6, // Adjust the height of the rail
+            borderRadius: 4, // Optional: Adjust the border radius for rounded corners
+        },
+        '& .MuiSlider-track': {
+            height: 6, // Adjust the height of the track
+            borderRadius: 4, // Optional: Adjust the border radius for rounded corners
+            transition: 'background-color 0.3s ease-in-out', // Add transition effect
+        },
+        '& .MuiSlider-thumb': {
+            width: 16, // Adjust the width of the thumb
+            height: 16, // Adjust the height of the thumb
+            marginTop: 0, // Optional: Center the thumb vertically with the track
+            marginLeft: 0, // Optional: Center the thumb horizontally with the track
+        },
+    });
+
+    const handleClick = ()=> {
+      if(value === 0){
+        console.log('Auto Top-up selected: 500');
+      }
+      else if(value === 1000){
+        console.log("Auto Top-up selected: 1200")
+      }
+      else if(value === 2000){
+        console.log("Auto Top-up selected: 1700")
+      }
+      else if(value === 3000){
+        console.log("Auto Top-up selected: 2500")
+      }
+      else if(value === 4000){
+        console.log("Auto Top-up selected: 3900")
+      }
+      else if(value === 5000){
+        console.log("Auto Top-up selected: 5000")
+      }
+    }
+
+    const creditValue = value === 0 ? 500 : value === 1000 ? 1200 : value === 2000 ? 1700 : value === 3000 ? 2500 : value === 4000 ? 3900 : value === 5500 ? 5000 : value;
+
+    return (
+        <div className='h-screen w-screen flex justify-center items-center p-2'>
+            <div className={`border-2 overflow-hidden sm:w-[600px] md:w-[600px] ${buttonOn ? "h-[260px]" : "h-[100px]"} rounded-3xl p-8`} style={{ transition: 'height 0.2s ease-in-out' }}>
+                {/* heading */}
+                <div className='flex items-center gap-2'>
+                    <Typography variant="h6" style={{ fontSize: '19px' }}>
+                        Setup Auto Top-up
+                    </Typography>
+                    <AntSwitch 
+                        defaultChecked={buttonOn} 
+                        inputProps={{ 'aria-label': 'ant design' }} 
+                        onChange={(event) => setButtonOn(event.target.checked)}
+                    />
+                </div>
+                {/* desc */}
+                {buttonOn && 
+                  (<div>
+                    <Typography variant="body2" style={{ fontSize: '12.5px' }} color="#898989">
+                        Once the credit score goes below a minimum threshold <span className='text-[#9847ff] font-bold'>50</span>, we will auto-purchase <span className='text-[#9847ff] font-bold'>{creditValue}</span> credits and add them to your account. 
+                        <a className='underline' href="https://github.com/rxjans">Learn more.</a>
+                    </Typography>
+                </div>)
+                }
+                {/* slider */}
+                {/* Conditionally render the slider based on the switch button state */}
+                {buttonOn && (
+                    <div className='flex justify-center mt-3'>
+                        <div style={{ width: '100%', position: 'relative' }}>
+                            <CustomSlider
+                                aria-label="credits"
+                                defaultValue={1000}
+                                getAriaValueText={valuetext}
+                                step={1000}
+                                marks={marks}
+                                min={0}
+                                max={5500}
+                                value={value}
+                                onChange={handleChange}
+                                ThumbComponent="span"
+                                sx={{
+                                    '& .MuiSlider-mark': {
+                                        width: '0px', // Adjust the width of the marks
+                                        height: '0px', // Adjust the height of the marks
+                                    },
+                                    '& .MuiSlider-markLabel': {
+                                        fontSize: '11px', // Change the font size of the label
+                                        fontWeight: 'bold', // Change the font weight of the label
+                                        marginLeft: '5px'
+                                    },
+                                    '& .MuiSlider-thumb': {
+                                        width: 18 , // Set the width of the thumb
+                                        height: 18, // Set the height of the thumb
+                                        borderRadius: '50%', // Make the thumb circular
+                                        backgroundColor: 'transparent', // Make the background of the thumb transparent
+                                        boxShadow: '0 0 19px 1px #9847ff', // Add a glow effect
+                                        border: '5px solid #9847ff', // Add a border with white color
+                                        backgroundImage: 'radial-gradient( white, white)', // Add a radial gradient for the thumb
+                                    },
+                                    '& .MuiSlider-track': {
+                                        borderRadius: '10px', // Round the edges of the track
+                                    },
+                                    color: '#9847ff', // Slider track color
+                                    '& .MuiSlider-rail': {
+                                        color: 'gray', // Rail color
+                                    },
+                                }}
+                            />
+                            {/* Render labels only if the switch button is on */}
+                            <Typography style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '-5px', left: '-1px' }}>
+                                500 credits
+                            </Typography>
+                            <Typography style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '-5px', left: 'calc(23% - 32px)' }}>
+                                1200 credits
+                            </Typography>
+                            <Typography style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '-5px', left: 'calc(40% - 25px)' }}>
+                                1700 credits
+                            </Typography>
+                            <Typography style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '-5px', left: 'calc(59% - 29px)' }}>
+                                2500 credits
+                            </Typography>
+                            <Typography style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '-5px', left: 'calc(78% - 34px)' }}>
+                                3900 credits
+                            </Typography>
+                            <Typography style={{ fontSize: '10px', fontWeight: 'bolder', color: '#898990' }} sx={{ position: 'absolute', bottom: '-5px', left: 'calc(100% - 58px)' }}>
+                                5000 credits
+                            </Typography>
+                        </div>
+                    </div>
+                )}
+                {/* button */}
+                <div style={{ transition: 'opacity 0.3s ease-in-out' }}>
+                    {/* Show button only if the switch button is on */}
+                    {buttonOn && (
+                        <Button 
+                            onClick={handleClick}
+                            sx={{ 
+                                backgroundColor: '#9847ff', 
+                                color: 'white', 
+                                width: '150px', 
+                                fontSize: '9.2px', 
+                                marginTop: '30px',
+                                '@media (max-width: 600px)': {
+                                  marginTop: '20px', // Adjusted top margin for smaller devices
+                              },
+                              '&:hover': { // This removes hover styles
+                                backgroundColor: '#9847ff', // Set background color to same as normal state (optional)
+                                color: 'white', // Set text color to same as normal state (optional)
+                              },
+                            }}
+                        >
+                            Confirm Auto-Purchase
+                        </Button>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default SliderComponent;
