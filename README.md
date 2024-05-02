@@ -1,7 +1,15 @@
 ## Using the Auto Top-up Slider Component in a React Application
 The Auto Top-up Slider Component is a customizable React component designed to facilitate setting up auto top-up functionality in a web application. This component includes a switch button to toggle the auto top-up feature on and off, a slider to select the desired top-up amount, and a button to confirm the auto-purchase.
 
+# Preview
+You can visit the live preview here: https://react-slider-indol.vercel.app
+
 # Installation
+To preview the component, extract the zip file. Open your terminal:
+```npm install```
+To run the preview:
+```npm run dev```
+
 To use the Auto Top-up Slider Component in your React application, follow these steps:
 
 Ensure you have React installed in your project. If not, you can install it using npm or yarn:
@@ -64,3 +72,4 @@ You can remove the flex property to remove the predefined center of component.
 This will render the SliderComponent within your application, allowing users to set up auto top-up functionality with ease.
 
 That's it! You've successfully integrated the Auto Top-up Slider Component into your React application. You can now leverage its functionality to enhance your user experience.
+
