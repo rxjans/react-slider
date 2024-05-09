@@ -72,5 +72,3 @@ You can remove the flex property to remove the predefined center of component.
 This will render the SliderComponent within your application, allowing users to set up auto top-up functionality with ease.
 
 That's it! You've successfully integrated the Auto Top-up Slider Component into your React application. You can now leverage its functionality to enhance your user experience.
-
-Visit the Github Repo here: https://github.com/rxjans/react-slider
