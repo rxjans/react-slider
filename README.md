@@ -1,3 +1,5 @@
+# REACT SLIDER
+
 ## Using the Auto Top-up Slider Component in a React Application
 The Auto Top-up Slider Component is a customizable React component designed to facilitate setting up auto top-up functionality in a web application. This component includes a switch button to toggle the auto top-up feature on and off, a slider to select the desired top-up amount, and a button to confirm the auto-purchase.
 
