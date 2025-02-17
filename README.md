@@ -72,4 +72,4 @@ export default App;
 ```
 This will render the SliderComponent within your application, allowing users to set up auto top-up functionality with ease.
 
-That's it! You've successfully integrated the Auto Top-up Slider Component into your React application. 
+That's it! You've successfully integrated the Auto Top-up Slider. 
