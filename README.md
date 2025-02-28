@@ -70,6 +70,6 @@ function App() {
 
 export default App;
 ```
-This will render the SliderComponent within your application, allowing users to set up auto top-up functionality with ease.
+This will render the SliderComponent within your application, allowing users to set up auto top-up functionality.
 
 That's it! You have successfully integrated the Auto Top-up Slider. 
